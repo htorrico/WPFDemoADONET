@@ -1,0 +1,70 @@
+﻿<Window x:Class="WPFDemoADONET.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFDemoADONET"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Grid.Row="0"
+        x:Name="btnListar"
+        Click="btnListar_Click"
+        Content="Listar Personas"
+        Width="140"
+        Height="35"
+        HorizontalAlignment="Left"
+        FontSize="14"
+        FontWeight="SemiBold"
+        Padding="10,5"/>
+            <Button Grid.Row="0"
+        Grid.Column="1"
+     x:Name="btnListar2" 
+                    Click="btnListar2_Click"
+     Content="Listar Personas"
+     Width="140"
+     Height="35"
+     HorizontalAlignment="Left"
+     FontSize="14"
+     FontWeight="SemiBold"
+     Padding="10,5"/>
+        </StackPanel>
+
+
+        <DataGrid Grid.Row="2"
+                  x:Name="dtEmpleados"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  RowHeight="30"
+                  FontSize="13">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="IdEmpleado"
+                                    Binding="{Binding IdEmpleado}"
+                                    Width="80"/>
+                <DataGridTextColumn Header="Nombre"
+                                    Binding="{Binding Nombre}"
+                                    Width="*"/>
+                <DataGridTextColumn Header="Apellidos"
+                                    Binding="{Binding Apellidos}"
+                                    Width="*"/>
+                <DataGridTextColumn Header="Cargo"
+                                    Binding="{Binding cargo}"
+                                    Width="100"/>
+                <DataGridTextColumn Header="Ciudad"
+                                    Binding="{Binding ciudad}"
+                                    Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
