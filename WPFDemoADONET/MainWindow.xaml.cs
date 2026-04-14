@@ -76,8 +76,8 @@ namespace WPFDemoADONET
 
             connection.Open();
 
-            SqlCommand command = new SqlCommand("SELECT * FROM Empleados", connection);
-
+            SqlCommand command = new SqlCommand("USP_ListarEmpleados", connection);
+            command.CommandType = CommandType.StoredProcedure;
 
             //Siempre que necesitar usar el datareader tienes que tener una conexión abierta
             SqlDataReader reader = command.ExecuteReader();
@@ -111,6 +111,8 @@ namespace WPFDemoADONET
       
             dtEmpleados.ItemsSource = empleados;
 
+            connection = null;
+            empleados = null;
 
 
         }
