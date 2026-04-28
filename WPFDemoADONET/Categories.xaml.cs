@@ -14,6 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Models;
+using Datos;
+using Negocio;
 
 namespace WPFDemoADONET
 {
@@ -33,16 +36,8 @@ namespace WPFDemoADONET
         {
             try
             {
-                using (SqlConnection cn = new SqlConnection(connectionString))
-                using (SqlCommand cmd = new SqlCommand("USP_InsCategory", cn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Name", txtName.Text);
-                    cmd.Parameters.AddWithValue("@Description", txtDescription.Text);
-
-                    cn.Open();
-                    cmd.ExecuteNonQuery();
-                }
+                NCategoria nCategoria = new NCategoria();
+                nCategoria.Insertar(txtName.Text, txtName.Text);
 
                 MessageBox.Show("Categoría registrada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -57,30 +52,11 @@ namespace WPFDemoADONET
         {
             try
             {
-                List<Category> lista = new List<Category>();
-
-                using (SqlConnection cn = new SqlConnection(connectionString))
-                using (SqlCommand cmd = new SqlCommand("USP_SelCategories", cn))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cn.Open();
-
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            lista.Add(new Category
-                            {
-                                IdCategory = Convert.ToInt32(dr["CategoryId"]),
-                                Name = dr["Name"].ToString(),
-                                Description = dr["Description"].ToString()
-                            });
-                        }
-                    }
-                }
+                DCategoria dCategoria = new DCategoria();
+               
 
                 dgCategories.ItemsSource = null;
-                dgCategories.ItemsSource = lista;
+                dgCategories.ItemsSource = dCategoria.listar();
             }
             catch (Exception ex)
             {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFDemoADONET
+namespace Models
 {
-    internal class Category
+    public class Category
     {
         public int IdCategory { get; set; }
         public string Name { get; set; }
